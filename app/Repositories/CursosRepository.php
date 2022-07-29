@@ -3,8 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\Cursos;
+use App\Repositories\Contracts\CursosRepositoryInterface;
 
-class CursosRepository
+class CursosRepository implements CursosRepositoryInterface
 {
     /** @var Cursos $entity */
     protected Cursos $entity;
