@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\StoreAlunosRequest;
 use App\Repositories\Contracts\AlunosRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -64,9 +65,14 @@ class ServiceAlunos
      * 
      * @return Bool
      */
-    public function update(int $id, Request $dados)
+    public function update(int $id, StoreAlunosRequest $request)
     {
-        $dados = [];
+        $dados = $request->safe()->only([
+            "nome",
+            "email",
+            "data_nascimento",
+            "curso_id"
+        ]);
 
         return $this->repository->update($id, $dados);
     }
@@ -74,13 +80,18 @@ class ServiceAlunos
     /**
      * Cria um registro.
      * 
-     * @param Request $dados
+     * @param Request $request
      * 
      * @return Bool
      */
-    public function create(Request $dados)
+    public function create(StoreAlunosRequest $request)
     {
-        $dados = [];
+        $dados = $request->safe()->only([
+            "nome",
+            "email",
+            "data_nascimento",
+            "curso_id"
+        ]);
 
         return $this->repository->create($dados);
     }
