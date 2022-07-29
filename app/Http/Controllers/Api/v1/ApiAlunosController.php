@@ -117,9 +117,9 @@ class ApiAlunosController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     *
+     * @param  \Illuminate\Http\Request  $request     *
      * @param  int  $id
+     *
      * @return JsonResponse
      */
     public function update(Request $request, int $id) : JsonResponse
