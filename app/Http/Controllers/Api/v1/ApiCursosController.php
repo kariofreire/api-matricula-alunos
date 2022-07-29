@@ -14,9 +14,9 @@ class ApiCursosController extends Controller
 
     /**
      * Define o service utilizado neste controller.
-     * 
+     *
      * @param ServiceCursos $service_cursos
-     * 
+     *
      * @return Void
      */
     public function __construct(ServiceCursos $service_cursos)
@@ -26,7 +26,7 @@ class ApiCursosController extends Controller
 
     /**
      * Retorna todos os cursos.
-     * 
+     *
      * @return JsonResponse
      */
     public function index() : JsonResponse
@@ -34,7 +34,7 @@ class ApiCursosController extends Controller
         try {
             $dados = $this->service->all();
 
-            return ReturnResponse::success("Dados retornado com sucesso.", $dados);
+            return ReturnResponse::success("Dados retornado com sucesso.", $dados, count($dados));
         } catch (\Exception $e) {
             return ReturnResponse::error("Ocorreu um erro ao retornar os dados.", $e->getMessage());
         }

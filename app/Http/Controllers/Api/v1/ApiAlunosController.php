@@ -13,16 +13,16 @@ class ApiAlunosController extends Controller
 {
     /** @var ServiceAlunos $service */
     protected ServiceAlunos $service;
-    
+
     /** @var ServiceCursos $service_cursos */
     protected ServiceCursos $service_cursos;
 
     /**
      * Define o service utilizado neste controller.
-     * 
+     *
      * @param ServiceAlunos $service_alunos
      * @param ServiceCursos $service_cursos
-     * 
+     *
      * @return Void
      */
     public function __construct(ServiceAlunos $service_alunos, ServiceCursos $service_cursos)
@@ -63,7 +63,7 @@ class ApiAlunosController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * 
+     *
      * @return JsonResponse
      */
     public function store(Request $request) : JsonResponse
@@ -71,7 +71,7 @@ class ApiAlunosController extends Controller
         try {
             $this->service->create($request);
 
-            return ReturnResponse::success("Aluno criado com sucesso.", []);
+            return ReturnResponse::success("Aluno criado com sucesso.");
         } catch (\Exception $e) {
             return ReturnResponse::error("Ocorreu um erro ao criar um aluno.", $e->getMessage());
         }
@@ -81,7 +81,7 @@ class ApiAlunosController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * 
+     *
      * @return JsonResponse
      */
     public function show($id) : JsonResponse
@@ -97,7 +97,7 @@ class ApiAlunosController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * 
+     *
      * @return JsonResponse
      */
     public function edit($id) : JsonResponse
@@ -118,7 +118,7 @@ class ApiAlunosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * 
+     *
      * @param  int  $id
      * @return JsonResponse
      */
@@ -127,7 +127,7 @@ class ApiAlunosController extends Controller
         try {
             $this->service->update($id, $request);
 
-            return ReturnResponse::success("Aluno atualizado com sucesso.", []);
+            return ReturnResponse::success("Aluno atualizado com sucesso.");
         } catch (\Exception $e) {
             return ReturnResponse::error("Ocorreu um erro ao atualizar um aluno.", $e->getMessage());
         }
@@ -137,7 +137,7 @@ class ApiAlunosController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * 
+     *
      * @return JsonResponse
      */
     public function destroy($id) : JsonResponse
@@ -145,7 +145,7 @@ class ApiAlunosController extends Controller
         try {
             $this->service->destroy($id);
 
-            return ReturnResponse::success("Aluno deletado com sucesso.", []);
+            return ReturnResponse::success("Aluno deletado com sucesso.");
         } catch (\Exception $e) {
             return ReturnResponse::error("Ocorreu um erro ao deletar um aluno.", $e->getMessage());
         }
