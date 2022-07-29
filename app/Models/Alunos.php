@@ -26,7 +26,6 @@ class Alunos extends Model
         "nome",
         "email",
         "data_nascimento",
-        "curso_id"
     ];
 
     /**
@@ -36,6 +35,7 @@ class Alunos extends Model
      */
     protected $hidden = [
         "id",
+        "curso_id",
         "created_at",
         "updated_at"
     ];
@@ -52,12 +52,21 @@ class Alunos extends Model
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        "data_nascimento" => "date:Y-m-d"
+    ];
+
+    /**
      * Realiza relacionamento com model de Cursos.
-     * 
+     *
      * @return HasOne
      */
     public function curso() : HasOne
     {
-        return $this->hasOne(Cursos::class);
+        return $this->hasOne(Cursos::class, "id", "curso_id");
     }
 }
