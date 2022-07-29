@@ -8,19 +8,19 @@ use Illuminate\Http\Request;
 
 class ApiAlunosController extends Controller
 {
-    /** @var ServiceAlunos $service_alunos */
-    protected ServiceAlunos $service_alunos;
+    /** @var ServiceAlunos $service */
+    protected ServiceAlunos $service;
 
     /**
      * Define o service utilizado neste controller.
      * 
-     * @param ServiceAlunos $service
+     * @param ServiceAlunos $service_alunos
      * 
      * @return Void
      */
-    public function __construct(ServiceAlunos $service)
+    public function __construct(ServiceAlunos $service_alunos)
     {
-        $this->service_alunos = $service;
+        $this->service = $service_alunos;
     }
 
     /**
