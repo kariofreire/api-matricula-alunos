@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\v1\ApiAlunosController;
+use App\Http\Controllers\Api\v1\ApiCursosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::resource("alunos", ApiAlunosController::class);
+Route::get("cursos", [ApiCursosController::class, "index"]);
+
+Route::fallback(function () {
+    return response()->json([
+        "status"  => false,
+        "message" => env("APP_NAME"),
+        "data"    => "Página não encontrada."
+    ], 404);
 });
