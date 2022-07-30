@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get("cursos", [ApiCursosController::class, "index"])->name("cursos.index");
+
 Route::resource("alunos", ApiAlunosController::class);
-Route::get("cursos", [ApiCursosController::class, "index"]);
 
 Route::fallback(function () {
     return response()->json([
