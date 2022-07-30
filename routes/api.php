@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\v1\ApiAlunosController;
 use App\Http\Controllers\Api\v1\ApiCursosController;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("cursos", [ApiCursosController::class, "index"])->name("cursos.index");
+// Route::group([
 
-Route::resource("alunos", ApiAlunosController::class);
+//     'middleware' => 'api',
+//     'namespace' => 'App\Http\Controllers',
+//     'prefix' => 'auth'
+
+// ], function ($router) {
+
+//     Route::post('login', 'AuthController@login');
+//     Route::post('refresh', 'AuthController@refresh');
+//     Route::post('me', 'AuthController@me');
+
+// });
+
+Route::prefix("auth")->middleware("api")->group(function () {
+    Route::post("login", [AuthController::class, "login"]);
+    Route::post("logout", [AuthController::class, "logout"]);
+});
+
+Route::middleware("authJWT")->group(function () {
+    Route::get("cursos", [ApiCursosController::class, "index"])->name("cursos.index");
+    Route::resource("alunos", ApiAlunosController::class);
+});
 
 Route::fallback(function () {
     return response()->json([
