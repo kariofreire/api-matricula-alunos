@@ -26,6 +26,7 @@ class Alunos extends Model
         "nome",
         "email",
         "data_nascimento",
+        "curso_id",
     ];
 
     /**
