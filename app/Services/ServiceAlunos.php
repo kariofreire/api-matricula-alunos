@@ -2,9 +2,8 @@
 
 namespace App\Services;
 
-use App\Http\Requests\AlunosRequest;
-use App\Http\Requests\StoreAlunosRequest;
 use App\Repositories\Contracts\AlunosRepositoryInterface;
+use App\Validation\AlunoValidation;
 use Illuminate\Http\Request;
 
 class ServiceAlunos
@@ -55,12 +54,7 @@ class ServiceAlunos
      */
     public function create(Request $request)
     {
-        $request->validate([
-            "nome"            => ["required"],
-            "email"           => ["required", "email"],
-            "data_nascimento" => ["required", "date"],
-            "curso_id"        => ["required"]
-        ]);
+        AlunoValidation::validate($request);
 
         return $this->repository->create($request->only(["nome", "email", "data_nascimento", "curso_id"]));
     }
@@ -75,12 +69,7 @@ class ServiceAlunos
      */
     public function update(int $id, Request $request)
     {
-        $request->validate([
-            "nome"            => ["required"],
-            "email"           => ["required", "email"],
-            "data_nascimento" => ["required", "date"],
-            "curso_id"        => ["required"]
-        ]);
+        AlunoValidation::validate($request);
 
         return $this->repository->update($id, $request->only(["nome", "email", "data_nascimento", "curso_id"]));
     }
