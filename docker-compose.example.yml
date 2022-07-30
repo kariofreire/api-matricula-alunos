@@ -1,0 +1,42 @@
+version: "3"
+
+networks:
+  matricula-alunos-network:
+    driver: bridge
+
+services:
+  app:
+    build: .
+    container_name: matricula-alunos
+    working_dir: "/var/www/html"
+    restart: always
+    networks:
+      - matricula-alunos-network
+    volumes:
+      - "./:/var/www/html"
+    ports:
+      - "8000:80"
+
+  database:
+    image: postgres:13.3
+    container_name: matricula-alunos-database
+    restart: always
+    networks:
+      - matricula-alunos-network
+    ports:
+      - "5431:5432"
+    volumes:
+      - "/opt/postgres:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_USER=pgsql
+      - POSTGRES_PASSWORD=pgsql
+      - POSTGRES_DB=matricula_alunos_db
+
+  sqlite:
+    image: nouchka/sqlite3
+    container_name: sqlite
+    restart: always
+    networks:
+      - matricula-alunos-network
+    stdin_open: true
+    tty: true
