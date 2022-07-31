@@ -12,7 +12,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
+    return response()->json([
+        "status"  => true,
+        "message" => env("APP_NAME"),
+        "data"    => []
+    ], 200);
+});
+
+Route::fallback(function () {
+    return response()->json([
+        "status"  => false,
+        "message" => env("APP_NAME"),
+        "data"    => "Página não encontrada."
+    ], 404);
 });
