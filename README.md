@@ -63,5 +63,5 @@ Necessário ter o [Docker](https://www.docker.com) instalado.
 
 ### API instalada por fim constamos que:
 
-APP executando na porta 8000.
-Banco de dados postgres executando na porta 5432.
+- APP executando na porta 8000.
+- Banco de dados postgres executando na porta 5432.
