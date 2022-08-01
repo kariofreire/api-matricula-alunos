@@ -35,7 +35,6 @@ class Alunos extends Model
      * @var array
      */
     protected $hidden = [
-        "id",
         "curso_id",
         "created_at",
         "updated_at"
@@ -58,7 +57,7 @@ class Alunos extends Model
      * @var array
      */
     protected $casts = [
-        "data_nascimento" => "date:Y-m-d"
+        "data_nascimento" => "date:d/m/Y"
     ];
 
     /**
